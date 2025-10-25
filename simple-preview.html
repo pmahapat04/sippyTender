@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SippyTenders - Your Pocket Bartender</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #2d3748;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 42px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        
+        .container {
+            flex: 1;
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .screen {
+            background: white;
+            border-radius: 24px;
+            margin: 20px 0;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            display: none;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .nav-btn.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .preference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .preference-item {
+            background: #f8fafc;
+            padding: 24px 20px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preference-item:hover {
+            background: #f1f5f9;
+            transform: translateY(-3px);
+            border-color: #cbd5e0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .preference-item.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .preference-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.2px;
+        }
+        
+        .preference-item p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .cocktail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+        
+        .cocktail-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .cocktail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .cocktail-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: white;
+            position: relative;
+        }
+        
+        .cocktail-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+        
+        .cocktail-info {
+            padding: 24px;
+        }
+        
+        .cocktail-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+            letter-spacing: -0.3px;
+        }
+        
+        .cocktail-category {
+            color: #718096;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            margin-bottom: 24px;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 28px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+            box-shadow: 0 4px 15px rgba(113, 128, 150, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(113, 128, 150, 0.4);
+        }
+        
+        .mood-mixer-card {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+        }
+        
+        .mood-mixer-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.4);
+        }
+        
+        .mood-mixer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .mood-mixer-arrow {
+            font-size: 24px;
+            margin-top: 10px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(5px); }
+        }
+        
+        .mood-survey {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .mood-question {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 32px;
+            border-radius: 20px;
+            margin: 24px 0;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .mood-question h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .mood-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+        
+        .mood-option {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 24px 20px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mood-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .mood-option.selected {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            border-color: #fff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .mood-emoji {
+            font-size: 42px;
+            margin-bottom: 12px;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .mood-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.2px;
+        }
+        
+        .mood-description {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .survey-progress {
+            background: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 24px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .survey-progress-bar {
+            background: linear-gradient(90deg, #4ECDC4 0%, #44A08D 100%);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            box-shadow: 0 2px 4px rgba(78, 205, 196, 0.3);
+        }
+        
+        .recommendation-card {
+            background: white;
+            color: #2d3748;
+            padding: 40px;
+            border-radius: 24px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .recommendation-emoji {
+            font-size: 72px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+        
+        .recommendation-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #667eea;
+            letter-spacing: -0.5px;
+        }
+        
+        .recommendation-reason {
+            font-size: 18px;
+            color: #718096;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .recommendation-ingredients {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .recommendation-ingredients strong {
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        
+        .ingredient-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 4px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .recipe-instructions {
+            background: #f8fafc;
+            padding: 24px;
+            border-radius: 16px;
+            margin: 24px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .recipe-instructions h4 {
+            color: #2d3748;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+        
+        .recipe-instructions ol {
+            color: #4a5568;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        
+        .recipe-instructions li {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .recipe-details {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .recipe-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .recipe-info-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: #4a5568;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .recipe-info-item strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .recommendation-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .ingredient-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .ingredient-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+        
+        .instructions {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .preference-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cocktail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🍹</div>
+        <h1>SippyTenders</h1>
+        <p class="subtitle">Your Pocket Bartender</p>
+    </div>
+    
+    <div class="container">
+        <div class="nav">
+            <button class="nav-btn active" onclick="showScreen('onboarding')">Onboarding</button>
+            <button class="nav-btn" onclick="showScreen('home')">Home</button>
+            <button class="nav-btn" onclick="showScreen('search')">Search</button>
+            <button class="nav-btn" onclick="showScreen('recipe')">Recipe Details</button>
+            <button class="nav-btn" onclick="showScreen('dashboard')">Dashboard</button>
+            <button class="nav-btn" onclick="showScreen('mood-survey')">Mood Survey</button>
+        </div>
+        
+        <!-- Onboarding Screen -->
+        <div id="onboarding" class="screen active">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Welcome to SippyTenders</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Let's personalize your cocktail experience</p>
+            
+            <div class="preference-grid">
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🍸 Light</h3>
+                    <p>Mild and refreshing</p>
+                </div>
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🍷 Medium</h3>
+                    <p>Balanced strength</p>
+                </div>
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🥃 Strong</h3>
+                    <p>Bold and intense</p>
+                </div>
+            </div>
+            
+            <div class="preference-grid">
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🍯 Not Sweet</h3>
+                    <p>Dry and crisp</p>
+                </div>
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🍭 Slightly Sweet</h3>
+                    <p>Subtle sweetness</p>
+                </div>
+                <div class="preference-item" onclick="selectPreference(this)">
+                    <h3>🍬 Sweet</h3>
+                    <p>Deliciously sweet</p>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="showScreen('home')">Get Started</button>
+        </div>
+        
+        <!-- Home Screen -->
+        <div id="home" class="screen">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Good evening!</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">What would you like to mix tonight?</p>
+            
+            <div class="cocktail-grid">
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍸</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Mojito</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍹</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Margarita</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🥃</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Old Fashioned</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mood-mixer-card" onclick="showMoodSurvey()">
+                <div class="mood-mixer-content">
+                    <h3>🎭 Mood Mixer</h3>
+                    <p>Tell me your mood and get personalized drink suggestions</p>
+                    <div class="mood-mixer-arrow">→</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Screen -->
+        <div id="search" class="screen">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Search Cocktails</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Find your perfect drink</p>
+            
+            <input type="text" class="search-bar" placeholder="Search cocktails..." />
+            
+            <div class="cocktail-grid">
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍸</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Cosmopolitan</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍹</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Piña Colada</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recipe Details Screen -->
+        <div id="recipe" class="screen">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Mojito Recipe</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Classic Cuban cocktail</p>
+            
+            <div class="cocktail-card">
+                <div class="cocktail-image">🍸</div>
+                <div class="cocktail-info">
+                    <div class="cocktail-name">Mojito</div>
+                    <div class="cocktail-category">Cocktail • ~15% ABV</div>
+                </div>
+            </div>
+            
+            <div class="ingredient-list">
+                <h3>Ingredients</h3>
+                <div class="ingredient-item">
+                    <span>White rum</span>
+                    <span>2 oz</span>
+                </div>
+                <div class="ingredient-item">
+                    <span>Fresh mint leaves</span>
+                    <span>10-12 leaves</span>
+                </div>
+                <div class="ingredient-item">
+                    <span>Lime juice</span>
+                    <span>1 oz</span>
+                </div>
+                <div class="ingredient-item">
+                    <span>Simple syrup</span>
+                    <span>1 oz</span>
+                </div>
+                <div class="ingredient-item">
+                    <span>Soda water</span>
+                    <span>To top</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <p>1. Muddle mint leaves with lime juice and simple syrup in a glass<br>
+                2. Add rum and ice<br>
+                3. Top with soda water<br>
+                4. Garnish with mint sprig and lime wheel</p>
+            </div>
+            
+            <button class="btn">❤️ Add to Favorites</button>
+        </div>
+        
+        <!-- Dashboard Screen -->
+        <div id="dashboard" class="screen">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">My Profile</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Your cocktail journey</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Favorites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Cocktails Tried</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Vodka</div>
+                    <div class="stat-label">Favorite Spirit</div>
+                </div>
+            </div>
+            
+            <h3>My Favorites</h3>
+            <div class="cocktail-grid">
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍸</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Mojito</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+                <div class="cocktail-card">
+                    <div class="cocktail-image">🍹</div>
+                    <div class="cocktail-info">
+                        <div class="cocktail-name">Margarita</div>
+                        <div class="cocktail-category">Cocktail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mood Survey Screen -->
+        <div id="mood-survey" class="screen mood-survey">
+            <h2 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 16px; letter-spacing: -0.5px;">🎭 Mood Mixer Survey</h2>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.9); margin-bottom: 32px; line-height: 1.6;">Let's find the perfect drink for your current mood!</p>
+            
+            <div class="survey-progress">
+                <div class="survey-progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            
+            <div id="question1" class="mood-question">
+                <h3>How are you feeling right now?</h3>
+                <div class="mood-options">
+                    <div class="mood-option" onclick="selectMood('relaxed', 1)">
+                        <span class="mood-emoji">😌</span>
+                        <div class="mood-title">Relaxed</div>
+                        <div class="mood-description">Chill and peaceful</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('energetic', 1)">
+                        <span class="mood-emoji">⚡</span>
+                        <div class="mood-title">Energetic</div>
+                        <div class="mood-description">Ready to party!</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('social', 1)">
+                        <span class="mood-emoji">🎉</span>
+                        <div class="mood-title">Social</div>
+                        <div class="mood-description">Want to connect</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('romantic', 1)">
+                        <span class="mood-emoji">💕</span>
+                        <div class="mood-title">Romantic</div>
+                        <div class="mood-description">Feeling lovey-dovey</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('adventurous', 1)">
+                        <span class="mood-emoji">🌟</span>
+                        <div class="mood-title">Adventurous</div>
+                        <div class="mood-description">Ready for something new</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('stressed', 1)">
+                        <span class="mood-emoji">😅</span>
+                        <div class="mood-title">Stressed</div>
+                        <div class="mood-description">Need to unwind</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="question2" class="mood-question" style="display: none;">
+                <h3>What's your energy level?</h3>
+                <div class="mood-options">
+                    <div class="mood-option" onclick="selectMood('low', 2)">
+                        <span class="mood-emoji">😴</span>
+                        <div class="mood-title">Low</div>
+                        <div class="mood-description">Take it easy</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('medium', 2)">
+                        <span class="mood-emoji">😊</span>
+                        <div class="mood-title">Medium</div>
+                        <div class="mood-description">Just right</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('high', 2)">
+                        <span class="mood-emoji">🚀</span>
+                        <div class="mood-title">High</div>
+                        <div class="mood-description">Let's go!</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="question3" class="mood-question" style="display: none;">
+                <h3>What's the occasion?</h3>
+                <div class="mood-options">
+                    <div class="mood-option" onclick="selectMood('solo', 3)">
+                        <span class="mood-emoji">🧘</span>
+                        <div class="mood-title">Solo Time</div>
+                        <div class="mood-description">Me, myself & I</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('date', 3)">
+                        <span class="mood-emoji">💑</span>
+                        <div class="mood-title">Date Night</div>
+                        <div class="mood-description">Romantic evening</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('party', 3)">
+                        <span class="mood-emoji">🎊</span>
+                        <div class="mood-title">Party Time</div>
+                        <div class="mood-description">Celebrating!</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood('casual', 3)">
+                        <span class="mood-emoji">👥</span>
+                        <div class="mood-title">Casual Hang</div>
+                        <div class="mood-description">With friends</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="recommendation" class="mood-question" style="display: none;">
+                <div class="recommendation-card">
+                    <div class="recommendation-emoji" id="recommendationEmoji">🍹</div>
+                    <div class="recommendation-title" id="recommendationTitle">Perfect Match!</div>
+                    <div class="recommendation-reason" id="recommendationReason">Based on your mood, here's your ideal drink:</div>
+                    
+                    <div class="recommendation-ingredients">
+                        <strong>Ingredients:</strong><br>
+                        <span id="recommendationIngredients"></span>
+                    </div>
+                    
+                    <div class="recipe-instructions">
+                        <h4>Instructions:</h4>
+                        <ol id="recipeSteps"></ol>
+                    </div>
+                    
+                    <div class="recipe-details">
+                        <div class="recipe-info">
+                            <span class="recipe-info-item">
+                                <strong>Prep Time:</strong> <span id="prepTime">5 mins</span>
+                            </span>
+                            <span class="recipe-info-item">
+                                <strong>Difficulty:</strong> <span id="difficulty">Easy</span>
+                            </span>
+                            <span class="recipe-info-item">
+                                <strong>Glass:</strong> <span id="glassType">Highball</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-actions">
+                        <button class="btn" onclick="showScreen('home')">Back to Home</button>
+                        <button class="btn btn-secondary" onclick="restartSurvey()">Take Survey Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show selected screen
+            document.getElementById(screenId).classList.add('active');
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function selectPreference(element) {
+            // Remove selection from siblings
+            element.parentNode.querySelectorAll('.preference-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Select current item
+            element.classList.add('selected');
+        }
+        
+        // Mood Survey Functions
+        let surveyAnswers = {};
+        let currentQuestion = 1;
+        
+        function showMoodSurvey() {
+            showScreen('mood-survey');
+            restartSurvey();
+        }
+        
+        function selectMood(mood, questionNum) {
+            // Remove selection from current question
+            document.querySelectorAll(`#question${questionNum} .mood-option`).forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Select current option
+            event.target.closest('.mood-option').classList.add('selected');
+            
+            // Store answer
+            surveyAnswers[`question${questionNum}`] = mood;
+            
+            // Update progress
+            updateProgress(questionNum);
+            
+            // Move to next question or show recommendation
+            setTimeout(() => {
+                if (questionNum < 3) {
+                    showNextQuestion(questionNum + 1);
+                } else {
+                    showRecommendation();
+                }
+            }, 500);
+        }
+        
+        function showNextQuestion(questionNum) {
+            // Hide current question
+            document.getElementById(`question${questionNum - 1}`).style.display = 'none';
+            
+            // Show next question
+            document.getElementById(`question${questionNum}`).style.display = 'block';
+        }
+        
+        function updateProgress(questionNum) {
+            const progress = (questionNum / 3) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function showRecommendation() {
+            // Hide all questions
+            document.querySelectorAll('.mood-question').forEach(q => {
+                if (q.id !== 'recommendation') {
+                    q.style.display = 'none';
+                }
+            });
+            
+            // Show recommendation
+            document.getElementById('recommendation').style.display = 'block';
+            
+            // Generate recommendation based on answers
+            const recommendation = generateRecommendation();
+            
+            document.getElementById('recommendationEmoji').textContent = recommendation.emoji;
+            document.getElementById('recommendationTitle').textContent = recommendation.title;
+            document.getElementById('recommendationReason').textContent = recommendation.reason;
+            document.getElementById('recommendationIngredients').innerHTML = recommendation.ingredients;
+            
+            // Update recipe details
+            document.getElementById('recipeSteps').innerHTML = recommendation.instructions;
+            document.getElementById('prepTime').textContent = recommendation.prepTime;
+            document.getElementById('difficulty').textContent = recommendation.difficulty;
+            document.getElementById('glassType').textContent = recommendation.glass;
+        }
+        
+        function generateRecommendation() {
+            const mood = surveyAnswers.question1;
+            const energy = surveyAnswers.question2;
+            const occasion = surveyAnswers.question3;
+            
+            const recommendations = {
+                'relaxed': {
+                    'low': {
+                        'solo': { 
+                            emoji: '🍵', 
+                            title: 'Chamomile Tea Cocktail', 
+                            reason: 'Perfect for a peaceful solo evening. Light, herbal, and calming.', 
+                            ingredients: '<span class="ingredient-tag">2 oz Gin</span><span class="ingredient-tag">4 oz Chamomile Tea</span><span class="ingredient-tag">1 tsp Honey</span><span class="ingredient-tag">1/2 oz Lemon Juice</span><span class="ingredient-tag">Lemon Slice</span>',
+                            instructions: '<li>Brew chamomile tea and let cool</li><li>In a shaker, combine gin, cooled tea, honey, and lemon juice</li><li>Shake with ice for 15 seconds</li><li>Strain into a glass over ice</li><li>Garnish with lemon slice</li>',
+                            prepTime: '5 mins',
+                            difficulty: 'Easy',
+                            glass: 'Highball'
+                        },
+                        'date': { 
+                            emoji: '🥂', 
+                            title: 'Sparkling Wine Spritzer', 
+                            reason: 'Light and elegant for a romantic, relaxed evening together.', 
+                            ingredients: '<span class="ingredient-tag">4 oz Prosecco</span><span class="ingredient-tag">1/2 oz Elderflower Liqueur</span><span class="ingredient-tag">2 Cucumber Slices</span><span class="ingredient-tag">2 Mint Leaves</span><span class="ingredient-tag">Soda Water</span>',
+                            instructions: '<li>Muddle cucumber and mint in a glass</li><li>Add elderflower liqueur and ice</li><li>Top with prosecco and a splash of soda water</li><li>Stir gently and garnish with cucumber slice</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Champagne Flute'
+                        },
+                        'party': { 
+                            emoji: '🍹', 
+                            title: 'Mimosa', 
+                            reason: 'Classic, light, and perfect for a relaxed celebration.', 
+                            ingredients: '<span class="ingredient-tag">3 oz Champagne</span><span class="ingredient-tag">2 oz Orange Juice</span><span class="ingredient-tag">1/2 oz Triple Sec</span><span class="ingredient-tag">Orange Slice</span>',
+                            instructions: '<li>Pour orange juice into a champagne flute</li><li>Add triple sec</li><li>Slowly top with champagne</li><li>Garnish with orange slice</li>',
+                            prepTime: '2 mins',
+                            difficulty: 'Easy',
+                            glass: 'Champagne Flute'
+                        },
+                        'casual': { 
+                            emoji: '🍸', 
+                            title: 'Gin & Tonic', 
+                            reason: 'Simple, refreshing, and perfect for casual conversation.', 
+                            ingredients: '<span class="ingredient-tag">2 oz Gin</span><span class="ingredient-tag">4 oz Tonic Water</span><span class="ingredient-tag">1/2 Lime</span><span class="ingredient-tag">Cucumber Slice</span><span class="ingredient-tag">Ice</span>',
+                            instructions: '<li>Fill a highball glass with ice</li><li>Pour gin over ice</li><li>Add tonic water</li><li>Squeeze lime and drop in glass</li><li>Garnish with cucumber slice</li>',
+                            prepTime: '2 mins',
+                            difficulty: 'Easy',
+                            glass: 'Highball'
+                        }
+                    },
+                    'medium': {
+                        'solo': { 
+                            emoji: '🍷', 
+                            title: 'Wine Spritzer', 
+                            reason: 'Balanced and refreshing for your relaxed solo time.', 
+                            ingredients: '<span class="ingredient-tag">4 oz White Wine</span><span class="ingredient-tag">2 oz Soda Water</span><span class="ingredient-tag">1/2 oz Lemon Juice</span><span class="ingredient-tag">Fresh Herbs</span><span class="ingredient-tag">Ice</span>',
+                            instructions: '<li>Fill a wine glass with ice</li><li>Pour white wine over ice</li><li>Add lemon juice and soda water</li><li>Stir gently and garnish with herbs</li>',
+                            prepTime: '2 mins',
+                            difficulty: 'Easy',
+                            glass: 'Wine Glass'
+                        },
+                        'date': { 
+                            emoji: '🍸', 
+                            title: 'French 75', 
+                            reason: 'Elegant and sophisticated for a romantic evening.', 
+                            ingredients: '<span class="ingredient-tag">1 oz Gin</span><span class="ingredient-tag">1/2 oz Lemon Juice</span><span class="ingredient-tag">1/2 oz Simple Syrup</span><span class="ingredient-tag">2 oz Champagne</span><span class="ingredient-tag">Lemon Twist</span>',
+                            instructions: '<li>Shake gin, lemon juice, and simple syrup with ice</li><li>Strain into a champagne flute</li><li>Top with champagne</li><li>Garnish with lemon twist</li>',
+                            prepTime: '4 mins',
+                            difficulty: 'Medium',
+                            glass: 'Champagne Flute'
+                        },
+                        'party': { 
+                            emoji: '🥃', 
+                            title: 'Whiskey Sour', 
+                            reason: 'Classic and balanced for a relaxed celebration.', 
+                            ingredients: '<span class="ingredient-tag">2 oz Whiskey</span><span class="ingredient-tag">3/4 oz Lemon Juice</span><span class="ingredient-tag">1/2 oz Simple Syrup</span><span class="ingredient-tag">1 Egg White</span><span class="ingredient-tag">Cherry</span>',
+                            instructions: '<li>Dry shake all ingredients without ice</li><li>Add ice and shake again</li><li>Double strain into a rocks glass</li><li>Garnish with cherry</li>',
+                            prepTime: '5 mins',
+                            difficulty: 'Medium',
+                            glass: 'Rocks Glass'
+                        },
+                        'casual': { 
+                            emoji: '🍹', 
+                            title: 'Paloma', 
+                            reason: 'Refreshing and light for casual hanging out.', 
+                            ingredients: '<span class="ingredient-tag">2 oz Tequila</span><span class="ingredient-tag">3 oz Grapefruit Juice</span><span class="ingredient-tag">1/2 oz Lime Juice</span><span class="ingredient-tag">Soda Water</span><span class="ingredient-tag">Salt Rim</span>',
+                            instructions: '<li>Rim glass with salt</li><li>Fill with ice</li><li>Add tequila, grapefruit juice, and lime juice</li><li>Top with soda water and stir</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Highball'
+                        }
+                    },
+                    'high': {
+                        'solo': { emoji: '🍸', title: 'Negroni', reason: 'Bold and complex for your relaxed but energetic solo time.', ingredients: '<span class="ingredient-tag">Gin</span><span class="ingredient-tag">Campari</span><span class="ingredient-tag">Sweet Vermouth</span><span class="ingredient-tag">Orange Peel</span>' },
+                        'date': { emoji: '🥂', title: 'Champagne Cocktail', reason: 'Elegant and celebratory for a romantic evening.', ingredients: '<span class="ingredient-tag">Champagne</span><span class="ingredient-tag">Cognac</span><span class="ingredient-tag">Sugar Cube</span><span class="ingredient-tag">Angostura</span>' },
+                        'party': { emoji: '🍹', title: 'Moscow Mule', reason: 'Refreshing and energizing for your celebration!', ingredients: '<span class="ingredient-tag">Vodka</span><span class="ingredient-tag">Ginger Beer</span><span class="ingredient-tag">Lime</span><span class="ingredient-tag">Mint</span>' },
+                        'casual': { emoji: '🍺', title: 'Beer Cocktail', reason: 'Fun and social for hanging out with friends.', ingredients: '<span class="ingredient-tag">Beer</span><span class="ingredient-tag">Lemonade</span><span class="ingredient-tag">Vodka</span><span class="ingredient-tag">Mint</span>' }
+                    }
+                },
+                'energetic': {
+                    'low': {
+                        'solo': { 
+                            emoji: '☕', 
+                            title: 'Espresso Martini', 
+                            reason: 'Caffeinated and energizing for your solo adventure!', 
+                            ingredients: '<span class="ingredient-tag">2 oz Vodka</span><span class="ingredient-tag">1 oz Espresso</span><span class="ingredient-tag">1/2 oz Coffee Liqueur</span><span class="ingredient-tag">1/2 oz Simple Syrup</span><span class="ingredient-tag">Coffee Beans</span>',
+                            instructions: '<li>Shake all ingredients with ice vigorously</li><li>Double strain into a chilled martini glass</li><li>Garnish with coffee beans</li>',
+                            prepTime: '4 mins',
+                            difficulty: 'Medium',
+                            glass: 'Martini Glass'
+                        },
+                        'date': { 
+                            emoji: '🍸', 
+                            title: 'Cosmopolitan', 
+                            reason: 'Vibrant and exciting for an energetic date night!', 
+                            ingredients: '<span class="ingredient-tag">1.5 oz Vodka</span><span class="ingredient-tag">1 oz Cranberry Juice</span><span class="ingredient-tag">1/2 oz Triple Sec</span><span class="ingredient-tag">1/2 oz Lime Juice</span><span class="ingredient-tag">Lime Wheel</span>',
+                            instructions: '<li>Shake all ingredients with ice</li><li>Strain into a chilled martini glass</li><li>Garnish with lime wheel</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Martini Glass'
+                        },
+                        'party': { 
+                            emoji: '🍹', 
+                            title: 'Tequila Sunrise', 
+                            reason: 'Colorful and energizing for your party!', 
+                            ingredients: '<span class="ingredient-tag">2 oz Tequila</span><span class="ingredient-tag">4 oz Orange Juice</span><span class="ingredient-tag">1/2 oz Grenadine</span><span class="ingredient-tag">Orange Slice</span><span class="ingredient-tag">Cherry</span>',
+                            instructions: '<li>Fill glass with ice</li><li>Add tequila and orange juice</li><li>Slowly pour grenadine to create sunrise effect</li><li>Garnish with orange slice and cherry</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Highball'
+                        },
+                        'casual': { 
+                            emoji: '🥃', 
+                            title: 'Whiskey Highball', 
+                            reason: 'Simple and energizing for casual fun!', 
+                            ingredients: '<span class="ingredient-tag">2 oz Whiskey</span><span class="ingredient-tag">4 oz Ginger Ale</span><span class="ingredient-tag">1/2 Lime</span><span class="ingredient-tag">Mint Sprig</span><span class="ingredient-tag">Ice</span>',
+                            instructions: '<li>Fill highball glass with ice</li><li>Add whiskey and ginger ale</li><li>Squeeze lime and drop in glass</li><li>Garnish with mint sprig</li>',
+                            prepTime: '2 mins',
+                            difficulty: 'Easy',
+                            glass: 'Highball'
+                        }
+                    },
+                    'medium': {
+                        'solo': { 
+                            emoji: '🍸', 
+                            title: 'Margarita', 
+                            reason: 'Zesty and energizing for your solo time!', 
+                            ingredients: '<span class="ingredient-tag">2 oz Tequila</span><span class="ingredient-tag">1 oz Lime Juice</span><span class="ingredient-tag">1/2 oz Triple Sec</span><span class="ingredient-tag">1/2 oz Simple Syrup</span><span class="ingredient-tag">Salt Rim</span><span class="ingredient-tag">Lime Wheel</span>',
+                            instructions: '<li>Rim glass with salt</li><li>Shake all ingredients with ice</li><li>Strain into glass over ice</li><li>Garnish with lime wheel</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Margarita Glass'
+                        },
+                        'date': { 
+                            emoji: '🥂', 
+                            title: 'Bellini', 
+                            reason: 'Elegant and energizing for your date night!', 
+                            ingredients: '<span class="ingredient-tag">4 oz Prosecco</span><span class="ingredient-tag">2 oz Peach Puree</span><span class="ingredient-tag">1/2 oz Lemon Juice</span><span class="ingredient-tag">1 tsp Sugar</span><span class="ingredient-tag">Peach Slice</span>',
+                            instructions: '<li>Mix peach puree with lemon juice and sugar</li><li>Pour into champagne flute</li><li>Slowly top with prosecco</li><li>Garnish with peach slice</li>',
+                            prepTime: '3 mins',
+                            difficulty: 'Easy',
+                            glass: 'Champagne Flute'
+                        },
+                        'party': { 
+                            emoji: '🍹', 
+                            title: 'Piña Colada', 
+                            reason: 'Tropical and fun for your energetic party!', 
+                            ingredients: '<span class="ingredient-tag">2 oz White Rum</span><span class="ingredient-tag">2 oz Pineapple Juice</span><span class="ingredient-tag">1 oz Coconut Cream</span><span class="ingredient-tag">1/2 oz Lime Juice</span><span class="ingredient-tag">Pineapple Wedge</span><span class="ingredient-tag">Cherry</span>',
+                            instructions: '<li>Blend all ingredients with ice until smooth</li><li>Pour into hurricane glass</li><li>Garnish with pineapple wedge and cherry</li>',
+                            prepTime: '4 mins',
+                            difficulty: 'Easy',
+                            glass: 'Hurricane Glass'
+                        },
+                        'casual': { 
+                            emoji: '🍺', 
+                            title: 'Shandy', 
+                            reason: 'Light and refreshing for casual energy!', 
+                            ingredients: '<span class="ingredient-tag">8 oz Beer</span><span class="ingredient-tag">4 oz Lemonade</span><span class="ingredient-tag">1/2 oz Ginger Syrup</span><span class="ingredient-tag">Mint Sprig</span><span class="ingredient-tag">Ice</span>',
+                            instructions: '<li>Fill glass with ice</li><li>Pour beer and lemonade</li><li>Add ginger syrup and stir</li><li>Garnish with mint sprig</li>',
+                            prepTime: '2 mins',
+                            difficulty: 'Easy',
+                            glass: 'Pint Glass'
+                        }
+                    },
+                    'high': {
+                        'solo': { emoji: '🍸', title: 'Mojito', reason: 'Fresh and invigorating for your high-energy solo time!', ingredients: '<span class="ingredient-tag">Rum</span><span class="ingredient-tag">Mint</span><span class="ingredient-tag">Lime</span><span class="ingredient-tag">Soda</span>' },
+                        'date': { emoji: '🥂', title: 'Champagne Cocktail', reason: 'Bubbly and exciting for your energetic date!', ingredients: '<span class="ingredient-tag">Champagne</span><span class="ingredient-tag">Cognac</span><span class="ingredient-tag">Sugar</span><span class="ingredient-tag">Bitters</span>' },
+                        'party': { emoji: '🍹', title: 'Long Island Iced Tea', reason: 'Powerful and energizing for your party!', ingredients: '<span class="ingredient-tag">Vodka</span><span class="ingredient-tag">Rum</span><span class="ingredient-tag">Gin</span><span class="ingredient-tag">Tequila</span><span class="ingredient-tag">Triple Sec</span><span class="ingredient-tag">Cola</span>' },
+                        'casual': { emoji: '🍺', title: 'Beer Cocktail', reason: 'Fun and social for your energetic hangout!', ingredients: '<span class="ingredient-tag">Beer</span><span class="ingredient-tag">Vodka</span><span class="ingredient-tag">Lemon</span><span class="ingredient-tag">Ginger</span>' }
+                    }
+                }
+            };
+            
+            // Default recommendation
+            const defaultRec = { emoji: '🍹', title: 'Perfect Cocktail', reason: 'Based on your mood, here\'s your ideal drink!', ingredients: '<span class="ingredient-tag">Your Choice</span><span class="ingredient-tag">Perfect Mix</span>' };
+            
+            return recommendations[mood]?.[energy]?.[occasion] || defaultRec;
+        }
+        
+        function restartSurvey() {
+            currentQuestion = 1;
+            surveyAnswers = {};
+            
+            // Hide all questions except first
+            document.querySelectorAll('.mood-question').forEach(q => {
+                if (q.id === 'question1') {
+                    q.style.display = 'block';
+                } else {
+                    q.style.display = 'none';
+                }
+            });
+            
+            // Reset progress
+            document.getElementById('progressBar').style.width = '0%';
+            
+            // Clear selections
+            document.querySelectorAll('.mood-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html>

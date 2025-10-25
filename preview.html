@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SippyTenders - Your Pocket Bartender</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #FF6B6B;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .feature-text {
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .cta:hover {
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            background: #e8f5e8;
+            color: #2d5a2d;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .instructions {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🍹</div>
+        <h1>SippyTenders</h1>
+        <p class="subtitle">Your Pocket Bartender</p>
+        
+        <div class="status">
+            ✅ <strong>Project Setup Complete!</strong><br>
+            Your React Native app is ready to run.
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">🎯</span>
+                <span class="feature-text">Personalized Recommendations</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🔍</span>
+                <span class="feature-text">Search & Filter Cocktails</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📱</span>
+                <span class="feature-text">Beautiful Mobile UI</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">❤️</span>
+                <span class="feature-text">Save Favorites</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🎭</span>
+                <span class="feature-text">Mood Mixer Feature</span>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>🚀 How to Run Your App:</h3>
+            <ol>
+                <li><strong>Android:</strong> <code>npm run android</code> (requires Android Studio)</li>
+                <li><strong>iOS:</strong> <code>npm run ios</code> (requires Xcode on macOS)</li>
+                <li><strong>Web Preview:</strong> Check the Expo app running in background</li>
+            </ol>
+        </div>
+        
+        <button class="cta" onclick="window.open('http://localhost:19006', '_blank')">
+            🌐 Open Web Preview
+        </button>
+        
+        <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            Built with React Native + TypeScript<br>
+            Powered by TheCocktailDB API
+        </p>
+    </div>
+</body>
+</html>
