@@ -551,6 +551,310 @@
             flex-wrap: wrap;
         }
         
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            color: #718096;
+            line-height: 1.6;
+        }
+        
+        .search-categories {
+            margin-top: 40px;
+        }
+        
+        .search-categories h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .category-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .category-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .category-card p {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.5;
+        }
+        
+        .recipe-demo {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .recipe-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .recipe-emoji {
+            font-size: 64px;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+        
+        .recipe-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .recipe-subtitle {
+            font-size: 18px;
+            color: #718096;
+        }
+        
+        .recipe-ingredients {
+            margin-bottom: 32px;
+        }
+        
+        .recipe-ingredients h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .ingredient-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .recipe-instructions {
+            margin-bottom: 32px;
+        }
+        
+        .recipe-instructions h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .recipe-instructions ol {
+            color: #4a5568;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        
+        .recipe-instructions li {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .recipe-info {
+            display: flex;
+            justify-content: space-around;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .info-item {
+            text-align: center;
+            font-size: 16px;
+            color: #4a5568;
+        }
+        
+        .info-item strong {
+            color: #2d3748;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+        
+        .saved-drinks-section {
+            margin-top: 40px;
+        }
+        
+        .saved-drinks-section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+        }
+        
+        .saved-drinks-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .saved-drink-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .saved-drink-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .saved-drink-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .saved-drink-emoji {
+            font-size: 32px;
+            margin-right: 16px;
+        }
+        
+        .saved-drink-info h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .saved-drink-info p {
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        .saved-drink-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 12px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 2px dashed #e2e8f0;
+        }
+        
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .empty-state h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            color: #718096;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
         .ingredient-list {
             background: #f8f9fa;
             border-radius: 10px;
@@ -602,88 +906,38 @@
     
     <div class="container">
         <div class="nav">
-            <button class="nav-btn active" onclick="showScreen('onboarding')">Onboarding</button>
-            <button class="nav-btn" onclick="showScreen('home')">Home</button>
+            <button class="nav-btn active" onclick="showScreen('home')">Home</button>
+            <button class="nav-btn" onclick="showScreen('mood-survey')">Mood Mixer</button>
             <button class="nav-btn" onclick="showScreen('search')">Search</button>
-            <button class="nav-btn" onclick="showScreen('recipe')">Recipe Details</button>
-            <button class="nav-btn" onclick="showScreen('dashboard')">Dashboard</button>
-            <button class="nav-btn" onclick="showScreen('mood-survey')">Mood Survey</button>
-        </div>
-        
-        <!-- Onboarding Screen -->
-        <div id="onboarding" class="screen active">
-            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Welcome to SippyTenders</h2>
-            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Let's personalize your cocktail experience</p>
-            
-            <div class="preference-grid">
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🍸 Light</h3>
-                    <p>Mild and refreshing</p>
-                </div>
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🍷 Medium</h3>
-                    <p>Balanced strength</p>
-                </div>
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🥃 Strong</h3>
-                    <p>Bold and intense</p>
-                </div>
-            </div>
-            
-            <div class="preference-grid">
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🍯 Not Sweet</h3>
-                    <p>Dry and crisp</p>
-                </div>
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🍭 Slightly Sweet</h3>
-                    <p>Subtle sweetness</p>
-                </div>
-                <div class="preference-item" onclick="selectPreference(this)">
-                    <h3>🍬 Sweet</h3>
-                    <p>Deliciously sweet</p>
-                </div>
-            </div>
-            
-            <button class="btn" onclick="showScreen('home')">Get Started</button>
+            <button class="nav-btn" onclick="showScreen('recipe')">Sample Recipe</button>
+            <button class="nav-btn" onclick="showScreen('dashboard')">My Drinks</button>
         </div>
         
         <!-- Home Screen -->
-        <div id="home" class="screen">
-            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Good evening!</h2>
-            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">What would you like to mix tonight?</p>
+        <div id="home" class="screen active">
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Welcome to SippyTenders</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Your personal cocktail assistant</p>
             
-            <div class="cocktail-grid">
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍸</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Mojito</div>
-                        <div class="cocktail-category">Cocktail</div>
-                    </div>
+            <div class="feature-cards">
+                <div class="feature-card" onclick="showScreen('mood-survey')">
+                    <div class="feature-icon">🎭</div>
+                    <h3>Mood Mixer</h3>
+                    <p>Get personalized cocktail recommendations based on your mood and occasion</p>
                 </div>
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍹</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Margarita</div>
-                        <div class="cocktail-category">Cocktail</div>
-                    </div>
+                
+                <div class="feature-card" onclick="showScreen('search')">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Search Cocktails</h3>
+                    <p>Find your perfect drink by name, ingredient, or alcohol type</p>
                 </div>
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🥃</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Old Fashioned</div>
-                        <div class="cocktail-category">Cocktail</div>
-                    </div>
+                
+                <div class="feature-card" onclick="showScreen('recipe')">
+                    <div class="feature-icon">📖</div>
+                    <h3>Recipe Details</h3>
+                    <p>Complete recipes with ingredients, measurements, and step-by-step instructions</p>
                 </div>
             </div>
             
-            <div class="mood-mixer-card" onclick="showMoodSurvey()">
-                <div class="mood-mixer-content">
-                    <h3>🎭 Mood Mixer</h3>
-                    <p>Tell me your mood and get personalized drink suggestions</p>
-                    <div class="mood-mixer-arrow">→</div>
-                </div>
-            </div>
         </div>
         
         <!-- Search Screen -->
@@ -693,19 +947,28 @@
             
             <input type="text" class="search-bar" placeholder="Search cocktails..." />
             
-            <div class="cocktail-grid">
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍸</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Cosmopolitan</div>
-                        <div class="cocktail-category">Cocktail</div>
+            <div class="search-categories">
+                <h3>Popular Categories</h3>
+                <div class="category-grid">
+                    <div class="category-card" onclick="showScreen('recipe')">
+                        <div class="category-icon">🍸</div>
+                        <h4>Classic Cocktails</h4>
+                        <p>Mojito, Margarita, Old Fashioned</p>
                     </div>
-                </div>
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍹</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Piña Colada</div>
-                        <div class="cocktail-category">Cocktail</div>
+                    <div class="category-card" onclick="showScreen('recipe')">
+                        <div class="category-icon">🥂</div>
+                        <h4>Champagne Drinks</h4>
+                        <p>Mimosa, Bellini, French 75</p>
+                    </div>
+                    <div class="category-card" onclick="showScreen('recipe')">
+                        <div class="category-icon">🍹</div>
+                        <h4>Tropical Drinks</h4>
+                        <p>Piña Colada, Mai Tai, Daiquiri</p>
+                    </div>
+                    <div class="category-card" onclick="showScreen('recipe')">
+                        <div class="category-icon">☕</div>
+                        <h4>Coffee Cocktails</h4>
+                        <p>Espresso Martini, Irish Coffee</p>
                     </div>
                 </div>
             </div>
@@ -713,86 +976,80 @@
         
         <!-- Recipe Details Screen -->
         <div id="recipe" class="screen">
-            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Mojito Recipe</h2>
-            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Classic Cuban cocktail</p>
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">Sample Recipe</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Complete cocktail recipe with ingredients and instructions</p>
             
-            <div class="cocktail-card">
-                <div class="cocktail-image">🍸</div>
-                <div class="cocktail-info">
-                    <div class="cocktail-name">Mojito</div>
-                    <div class="cocktail-category">Cocktail • ~15% ABV</div>
+            <div class="recipe-demo">
+                <div class="recipe-header">
+                    <div class="recipe-emoji">🍸</div>
+                    <div class="recipe-title">Mojito</div>
+                    <div class="recipe-subtitle">Classic Cuban Cocktail</div>
+                </div>
+                
+                <div class="recipe-ingredients">
+                    <h3>Ingredients</h3>
+                    <div class="ingredient-tags">
+                        <span class="ingredient-tag">2 oz White Rum</span>
+                        <span class="ingredient-tag">10-12 Mint Leaves</span>
+                        <span class="ingredient-tag">1 oz Lime Juice</span>
+                        <span class="ingredient-tag">1 oz Simple Syrup</span>
+                        <span class="ingredient-tag">Soda Water</span>
+                        <span class="ingredient-tag">Ice</span>
+                    </div>
+                </div>
+                
+                <div class="recipe-instructions">
+                    <h3>Instructions</h3>
+                    <ol>
+                        <li>Muddle mint leaves with lime juice and simple syrup in a glass</li>
+                        <li>Add rum and ice</li>
+                        <li>Top with soda water</li>
+                        <li>Garnish with mint sprig and lime wheel</li>
+                    </ol>
+                </div>
+                
+                <div class="recipe-info">
+                    <div class="info-item">
+                        <strong>Prep Time:</strong> 3 minutes
+                    </div>
+                    <div class="info-item">
+                        <strong>Difficulty:</strong> Easy
+                    </div>
+                    <div class="info-item">
+                        <strong>Glass:</strong> Highball
+                    </div>
                 </div>
             </div>
-            
-            <div class="ingredient-list">
-                <h3>Ingredients</h3>
-                <div class="ingredient-item">
-                    <span>White rum</span>
-                    <span>2 oz</span>
-                </div>
-                <div class="ingredient-item">
-                    <span>Fresh mint leaves</span>
-                    <span>10-12 leaves</span>
-                </div>
-                <div class="ingredient-item">
-                    <span>Lime juice</span>
-                    <span>1 oz</span>
-                </div>
-                <div class="ingredient-item">
-                    <span>Simple syrup</span>
-                    <span>1 oz</span>
-                </div>
-                <div class="ingredient-item">
-                    <span>Soda water</span>
-                    <span>To top</span>
-                </div>
-            </div>
-            
-            <div class="instructions">
-                <h3>Instructions</h3>
-                <p>1. Muddle mint leaves with lime juice and simple syrup in a glass<br>
-                2. Add rum and ice<br>
-                3. Top with soda water<br>
-                4. Garnish with mint sprig and lime wheel</p>
-            </div>
-            
-            <button class="btn">❤️ Add to Favorites</button>
         </div>
         
         <!-- Dashboard Screen -->
         <div id="dashboard" class="screen">
-            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">My Profile</h2>
-            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Your cocktail journey</p>
+            <h2 style="font-size: 32px; font-weight: 700; color: #2d3748; margin-bottom: 16px; letter-spacing: -0.5px;">My Drinks</h2>
+            <p style="font-size: 18px; color: #718096; margin-bottom: 32px; line-height: 1.6;">Your personalized cocktail collection</p>
             
-            <div class="stats-grid">
+            <div class="dashboard-stats">
                 <div class="stat-card">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Favorites</div>
+                    <div class="stat-number" id="totalDrinks">0</div>
+                    <div class="stat-label">Total Drinks</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Cocktails Tried</div>
+                    <div class="stat-number" id="moodDrinks">0</div>
+                    <div class="stat-label">Mood Matches</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">Vodka</div>
-                    <div class="stat-label">Favorite Spirit</div>
+                    <div class="stat-number" id="favoriteSpirit">-</div>
+                    <div class="stat-label">Top Spirit</div>
                 </div>
             </div>
             
-            <h3>My Favorites</h3>
-            <div class="cocktail-grid">
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍸</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Mojito</div>
-                        <div class="cocktail-category">Cocktail</div>
-                    </div>
-                </div>
-                <div class="cocktail-card">
-                    <div class="cocktail-image">🍹</div>
-                    <div class="cocktail-info">
-                        <div class="cocktail-name">Margarita</div>
-                        <div class="cocktail-category">Cocktail</div>
+            <div class="saved-drinks-section">
+                <h3>Saved Drinks</h3>
+                <div id="savedDrinksList" class="saved-drinks-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">🍹</div>
+                        <h4>No drinks saved yet</h4>
+                        <p>Use the Mood Mixer to discover and save your perfect cocktails!</p>
+                        <button class="btn" onclick="showScreen('mood-survey')">Try Mood Mixer</button>
                     </div>
                 </div>
             </div>
@@ -921,8 +1178,9 @@
                     </div>
                     
                     <div class="recommendation-actions">
-                        <button class="btn" onclick="showScreen('home')">Back to Home</button>
-                        <button class="btn btn-secondary" onclick="restartSurvey()">Take Survey Again</button>
+                        <button class="btn" onclick="saveDrinkToDashboard()">💾 Save to My Drinks</button>
+                        <button class="btn btn-secondary" onclick="showScreen('home')">Back to Home</button>
+                        <button class="btn btn-outline" onclick="restartSurvey()">Take Survey Again</button>
                     </div>
                 </div>
             </div>
@@ -959,6 +1217,8 @@
         // Mood Survey Functions
         let surveyAnswers = {};
         let currentQuestion = 1;
+        let savedDrinks = [];
+        let currentRecommendation = null;
         
         function showMoodSurvey() {
             showScreen('mood-survey');
@@ -1016,6 +1276,7 @@
             
             // Generate recommendation based on answers
             const recommendation = generateRecommendation();
+            currentRecommendation = recommendation;
             
             document.getElementById('recommendationEmoji').textContent = recommendation.emoji;
             document.getElementById('recommendationTitle').textContent = recommendation.title;
@@ -1248,6 +1509,169 @@
                 option.classList.remove('selected');
             });
         }
+        
+        // Dashboard Functions
+        function saveDrinkToDashboard() {
+            if (!currentRecommendation) return;
+            
+            const drink = {
+                id: Date.now(),
+                emoji: currentRecommendation.emoji,
+                title: currentRecommendation.title,
+                reason: currentRecommendation.reason,
+                ingredients: currentRecommendation.ingredients,
+                instructions: currentRecommendation.instructions,
+                prepTime: currentRecommendation.prepTime,
+                difficulty: currentRecommendation.difficulty,
+                glass: currentRecommendation.glass,
+                mood: surveyAnswers.question1,
+                energy: surveyAnswers.question2,
+                occasion: surveyAnswers.question3,
+                savedAt: new Date().toLocaleDateString()
+            };
+            
+            savedDrinks.push(drink);
+            updateDashboard();
+            
+            // Show success message
+            alert('Drink saved to your collection! 🍹');
+        }
+        
+        function updateDashboard() {
+            // Update stats
+            document.getElementById('totalDrinks').textContent = savedDrinks.length;
+            document.getElementById('moodDrinks').textContent = savedDrinks.length;
+            
+            // Calculate favorite spirit
+            const spirits = savedDrinks.map(drink => {
+                const ingredients = drink.ingredients;
+                if (ingredients.includes('Gin')) return 'Gin';
+                if (ingredients.includes('Vodka')) return 'Vodka';
+                if (ingredients.includes('Tequila')) return 'Tequila';
+                if (ingredients.includes('Rum')) return 'Rum';
+                if (ingredients.includes('Whiskey')) return 'Whiskey';
+                return 'Mixed';
+            });
+            
+            const favoriteSpirit = spirits.length > 0 ? 
+                spirits.reduce((a, b, i, arr) => 
+                    arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b
+                ) : '-';
+            document.getElementById('favoriteSpirit').textContent = favoriteSpirit;
+            
+            // Update saved drinks list
+            const savedDrinksList = document.getElementById('savedDrinksList');
+            
+            if (savedDrinks.length === 0) {
+                savedDrinksList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🍹</div>
+                        <h4>No drinks saved yet</h4>
+                        <p>Use the Mood Mixer to discover and save your perfect cocktails!</p>
+                        <button class="btn" onclick="showScreen('mood-survey')">Try Mood Mixer</button>
+                    </div>
+                `;
+            } else {
+                savedDrinksList.innerHTML = savedDrinks.map(drink => `
+                    <div class="saved-drink-card">
+                        <div class="saved-drink-header">
+                            <div class="saved-drink-emoji">${drink.emoji}</div>
+                            <div class="saved-drink-info">
+                                <h4>${drink.title}</h4>
+                                <p>Saved on ${drink.savedAt}</p>
+                            </div>
+                        </div>
+                        <p style="color: #718096; margin-bottom: 16px; font-size: 14px;">${drink.reason}</p>
+                        <div class="saved-drink-actions">
+                            <button class="btn btn-small" onclick="viewDrinkDetails('${drink.id}')">View Recipe</button>
+                            <button class="btn btn-small btn-outline" onclick="removeDrink('${drink.id}')">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        function viewDrinkDetails(drinkId) {
+            const drink = savedDrinks.find(d => d.id == drinkId);
+            if (!drink) return;
+            
+            // Show drink details in a modal-like overlay
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                padding: 20px;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 20px; padding: 32px; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto;">
+                    <div style="text-align: center; margin-bottom: 24px;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">${drink.emoji}</div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: #2d3748; margin-bottom: 8px;">${drink.title}</h2>
+                        <p style="color: #718096; font-size: 16px;">${drink.reason}</p>
+                    </div>
+                    
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 16px; margin: 20px 0;">
+                        <h4 style="color: #2d3748; margin-bottom: 12px;">Ingredients:</h4>
+                        <div>${drink.ingredients}</div>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <h4 style="color: #2d3748; margin-bottom: 12px;">Instructions:</h4>
+                        <ol style="color: #4a5568; line-height: 1.6; padding-left: 20px;">${drink.instructions}</ol>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; background: #f1f5f9; padding: 16px; border-radius: 12px; margin: 20px 0;">
+                        <div style="text-align: center;">
+                            <strong style="color: #2d3748;">Prep Time</strong><br>
+                            <span style="color: #4a5568;">${drink.prepTime}</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: #2d3748;">Difficulty</strong><br>
+                            <span style="color: #4a5568;">${drink.difficulty}</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: #2d3748;">Glass</strong><br>
+                            <span style="color: #4a5568;">${drink.glass}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 24px;">
+                        <button class="btn" onclick="this.closest('.modal').remove()">Close</button>
+                    </div>
+                </div>
+            `;
+            
+            modal.className = 'modal';
+            document.body.appendChild(modal);
+            
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+        
+        function removeDrink(drinkId) {
+            if (confirm('Remove this drink from your collection?')) {
+                savedDrinks = savedDrinks.filter(d => d.id != drinkId);
+                updateDashboard();
+            }
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard();
+        });
     </script>
 </body>
 </html>
